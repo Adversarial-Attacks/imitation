@@ -12,6 +12,7 @@ from stable_baselines3.common import monitor
 from stable_baselines3.common.base_class import BaseAlgorithm
 from stable_baselines3.common.policies import ActorCriticPolicy, BasePolicy
 from stable_baselines3.common.vec_env import DummyVecEnv, SubprocVecEnv, VecEnv
+import tqdm.autonotebook as tqdm_auto
 
 from imitation.data import wrappers
 
@@ -135,3 +136,18 @@ def docstring_parameter(*args, **kwargs):
         return obj
 
     return helper
+
+
+def auto_tqdm():
+    """"""
+    if os.isatty(1):
+        return tqdm_auto.tqdm
+    else:
+        return()
+
+
+def auto_trange():
+    if os.isatty(1):
+        return tqdm_auto.tqdm
+    else:
+        return range
